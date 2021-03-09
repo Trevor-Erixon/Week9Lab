@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Week8 Lab</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="container">
@@ -50,7 +51,7 @@
                             <td>${user.lastname}</td>
                             <td>${user.role}</td>
                             <td><i class="fa fa-pencil"></i></td>
-                            <td></td>
+                            <td><i class="fa fa-close" style="color:red"></i></td>
                         </c:foreach>
                     </tr>
                 </table>
