@@ -15,33 +15,33 @@ import models.User;
  */
 public class UserService {
 
-    public User get(int roleID) throws Exception {
+    public User get(String email) throws Exception {
         UserDB userDB = new UserDB();
-        User user = new User();        
+        User user = userDB.get(email);
         return user;
     }
     
-    public List<User> getAll(String email) throws Exception {
+    public List<User> getAll(User user) throws Exception {
         UserDB userDB = new UserDB();
-        List<User> users = userDB.getAll(email);
+        List<User> users = userDB.getAll(user);
         return users;
     }
     
     public void insert(String email, String firstName, String lastName, String password, boolean active, int roleID) throws Exception {
-        User user = new User(email, firstName, lastName, password, active, roleID);
+        User user = new User(email, active, firstName, lastName, password, roleID);
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }
     
     public void update(String email, String firstName, String lastName, String password, boolean active, int roleID) throws Exception {
-        User user = new User(email, firstName, lastName, password, active, roleID);
+        User user = new User(email, active, firstName, lastName, password, roleID);
         UserDB userDB = new UserDB();
         userDB.update(user); 
     }
     
-    public void delete(int roleId) throws Exception {
+    public void delete(String email) throws Exception {
         User user = new User();
-        user.setRoleID(roleID);
+        user.setEmail(email);
         UserDB userDB = new UserDB();        
         userDB.delete(user);
     }
