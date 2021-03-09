@@ -9,9 +9,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Week8 Lab</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container">
+            <div class="addForm">
+                <h1 class="addUser">Add User</h1>
+                <form action="users" method="post">
+                    <input class="userInfo" type="email" placeholder="Email" name="email" required>        
+                    <input class="userInfo" type="text" placeholder="First Name" name="firstname" required> 
+                    <input class="userInfo" type="text" placeholder="Last Name" name="lastname" required>         
+                    <input class="userInfo" type="password" placeholder="Password" name="password" required>
+                    <select class="userInfo" name="role">
+                        <option value="System Admin">System Admin</option>
+                        <option value="Regular User">Regular User</option>
+                        <option value="Company Admin">Company Admin</option>
+                    </select>
+
+                    <input type="hidden" name="action" value="add">
+                    <input class="addInput" type="submit" value="Save">
+                </form>
+            </div>
+            
+            <div class="manageForm">
+                <h1 class="manageUser">Manage Users</h1>
+                
+            </div>
+            
+            <h1>Edit User</h1> 
+            
+        </div>
     </body>
 </html>
