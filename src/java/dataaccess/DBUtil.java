@@ -5,10 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author 841898
- */
+import java.sql.*;
+
 public class DBUtil {
     public static void closePreparedStatement(Statement ps) {
         try {
