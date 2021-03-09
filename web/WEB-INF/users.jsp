@@ -54,11 +54,25 @@
                         </c:foreach>
                     </tr>
                 </table>
-                
             </div>
-            
-            <h1>Edit User</h1> 
-            
+            <div class="editForm">
+                <h1 class="editUser">Edit User</h1>
+                <form action="users" method="post">
+                    <input class="userInfo" type="email" placeholder="Edit Email" name="email" value="${user.email}">        
+                    <input class="userInfo" type="text" placeholder="Edit First Name" name="firstname" value="${user.firstname}"> 
+                    <input class="userInfo" type="text" placeholder="Edit Last Name" name="lastname" value="${user.lastname}">     
+                    <select class="userInfo" name="role">
+                        <option value="System Admin">System Admin</option>
+                        <option value="Regular User">Regular User</option>
+                        <option value="Company Admin">Company Admin</option>
+                    </select>
+
+                    <input type="hidden" name="action" value="edit">
+                    <input class="addInput" type="submit" value="Save">
+                    <input class="Cancel" type="button" value="Cancel">
+                </form>     
+            </div>
+
         </div>
     </body>
 </html>
