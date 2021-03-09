@@ -23,9 +23,9 @@
                     <input class="userInfo" type="text" placeholder="Last Name" name="lastname" required>         
                     <input class="userInfo" type="password" placeholder="Password" name="password" required>
                     <select class="userInfo" name="role">
-                        <option value="System Admin">System Admin</option>
-                        <option value="Regular User">Regular User</option>
-                        <option value="Company Admin">Company Admin</option>
+                        <option value="System admin">System Admin</option>
+                        <option value="Regular user">Regular User</option>
+                        <option value="Company admin">Company Admin</option>
                     </select>
 
                     <input type="hidden" name="action" value="add">
@@ -49,13 +49,15 @@
                             <td>${user.email}</td>
                             <td>${user.firstname}</td>
                             <td>${user.lastname}</td>
-                            <td>${user.role}</td>
+                            <td>${user.role.roleID}</td>
                             <td><i class="fa fa-pencil"></i></td>
                             <td><i class="fa fa-close" style="color:red"></i></td>
                         </c:foreach>
                     </tr>
                 </table>
             </div>
+                            
+            <c:if test="${edit eq true}">
             <div class="editForm">
                 <h1 class="editUser">Edit User</h1>
                 <form action="users" method="post">
@@ -63,9 +65,15 @@
                     <input class="userInfo" type="text" placeholder="Edit First Name" name="firstname" value="${user.firstname}"> 
                     <input class="userInfo" type="text" placeholder="Edit Last Name" name="lastname" value="${user.lastname}">     
                     <select class="userInfo" name="role">
-                        <option value="System Admin">System Admin</option>
-                        <option value="Regular User">Regular User</option>
-                        <option value="Company Admin">Company Admin</option>
+                        <c:if test="${user.role.roleID eq 'System admin'}">
+                            <option value="System admin">System Admin</option>
+                        </c:if>
+                        <c:if test="${user.role.roleID ne 'Regular user'}">
+                            <option value="Regular user">Regular User</option>
+                        </c:if>
+                        <c:if test="${user.role.roleID ne 'Company admin'}">
+                            <option value="Company admin">Company Admin</option>
+                        </c:if>
                     </select>
 
                     <input type="hidden" name="action" value="edit">
@@ -73,6 +81,7 @@
                     <input class="Cancel" type="button" value="Cancel">
                 </form>     
             </div>
+            </c:if>
 
         </div>
     </body>
