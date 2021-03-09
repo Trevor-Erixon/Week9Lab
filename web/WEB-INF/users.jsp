@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Week8 Lab</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="container">
@@ -33,6 +34,26 @@
             
             <div class="manageForm">
                 <h1 class="manageUser">Manage Users</h1>
+                <table>
+                    <tr>
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Role</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr>
+                        <c:forEach items="${users}" var="user">
+                            <td>${user.email}</td>
+                            <td>${user.firstname}</td>
+                            <td>${user.lastname}</td>
+                            <td>${user.role}</td>
+                            <td><i class="fa fa-pencil"></i></td>
+                            <td></td>
+                        </c:foreach>
+                    </tr>
+                </table>
                 
             </div>
             
