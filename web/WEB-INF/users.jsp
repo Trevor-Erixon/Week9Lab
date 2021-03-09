@@ -15,22 +15,25 @@
     </head>
     <body>
         <div class="container">
+           
             <div class="addForm">
+                <c:if test="${activeUser == null}">
                 <h1 class="addUser">Add User</h1>
-                <form action="users" method="post">
-                    <input class="userInfo" type="email" placeholder="Email" name="email" required>        
-                    <input class="userInfo" type="text" placeholder="First Name" name="firstname" required> 
-                    <input class="userInfo" type="text" placeholder="Last Name" name="lastname" required>         
-                    <input class="userInfo" type="password" placeholder="Password" name="password" required>
-                    <select class="userInfo" name="role">
-                        <option value="System admin">System Admin</option>
-                        <option value="Regular user">Regular User</option>
-                        <option value="Company admin">Company Admin</option>
-                    </select>
+                    <form action="users" method="post">
+                        <input class="userInfo" type="email" placeholder="Email" name="email" required>
+                        <input class="userInfo" type="text" placeholder="First Name" name="firstname" required> 
+                        <input class="userInfo" type="text" placeholder="Last Name" name="lastname" required>         
+                        <input class="userInfo" type="password" placeholder="Password" name="password" required>
+                        <select class="userInfo" name="role">
+                            <option value="System admin">System Admin</option>
+                            <option value="Regular user">Regular User</option>
+                            <option value="Company admin">Company Admin</option>
+                        </select>
 
-                    <input type="hidden" name="action" value="add">
-                    <input class="addInput" type="submit" value="Save">
-                </form>
+                        <input type="hidden" name="action" value="add">
+                        <input class="addInput" type="submit" value="Save">
+                    </form>
+                </c:if>
             </div>
             
             <div class="manageForm">
@@ -38,6 +41,7 @@
                 <table>
                     <tr>
                         <th>Email</th>
+                        <th>Active</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Role</th>
@@ -47,41 +51,68 @@
                     <tr>
                         <c:forEach items="${users}" var="user">
                             <td>${user.email}</td>
+                            <td>
+                                <input class="userInfo chActive" type="checkbox" name="isActive" checked>                          
+                            </td>
                             <td>${user.firstname}</td>
                             <td>${user.lastname}</td>
                             <td>${user.role.roleID}</td>
-                            <td><i class="fa fa-pencil"></i></td>
-                            <td><i class="fa fa-close" style="color:red"></i></td>
+<!--                            <c:if test="${user.role.roleID eq 'System admin'}">
+                                <td>System Admin</td>
+                            </c:if>
+                                <c:if test="${user.role.roleID eq 'Regular user'}">
+                                <td>Regular User</td>
+                            </c:if>
+                                <c:if test="${user.role.roleID eq 'Company admin'}">
+                                <td>Company Admin</td>
+                            </c:if>-->
+                            
+                            <td>
+                                <form action="users" method="get" >
+                                    <input type="submit" name="edit" >
+                                    <input type="hidden" name="action" value="edit">
+                                    <i class="fa fa-pencil editBtn"></i>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="users" method="get" >
+                                    <input type="submit" name="delete">
+                                    <input type="hidden" name="action" value="delete">
+                                    <i class="fa fa-close delBtn" style="color:red"></i>
+                                </form>
+                            </td>
                         </c:foreach>
                     </tr>
                 </table>
             </div>
-                            
-            <c:if test="${edit eq true}">
+                           
             <div class="editForm">
+                <c:if test="${activeUser != null}">
                 <h1 class="editUser">Edit User</h1>
-                <form action="users" method="post">
-                    <input class="userInfo" type="email" placeholder="Edit Email" name="email" value="${user.email}">        
-                    <input class="userInfo" type="text" placeholder="Edit First Name" name="firstname" value="${user.firstname}"> 
-                    <input class="userInfo" type="text" placeholder="Edit Last Name" name="lastname" value="${user.lastname}">     
-                    <select class="userInfo" name="role">
-                        <c:if test="${user.role.roleID eq 'System admin'}">
-                            <option value="System admin">System Admin</option>
-                        </c:if>
-                        <c:if test="${user.role.roleID ne 'Regular user'}">
-                            <option value="Regular user">Regular User</option>
-                        </c:if>
-                        <c:if test="${user.role.roleID ne 'Company admin'}">
-                            <option value="Company admin">Company Admin</option>
-                        </c:if>
-                    </select>
+                    <form action="users" method="post">
+                        <input class="userInfo" type="email" placeholder="Edit Email" name="email" value="${user.email}" readonly>
+                        <input class="userInfo" type="text" placeholder="Edit First Name" name="firstname" value="${user.firstname}"> 
+                        <input class="userInfo" type="text" placeholder="Edit Last Name" name="lastname" value="${user.lastname}">     
+                        <input class="userInfo" type="password" placeholder="Password" name="password" value="${user.password}">
+                        <select class="userInfo" name="role" value="${editRole}">
+                            <c:if test="${user.role.roleID eq 'System admin'}">
+                                <option value="System admin">System Admin</option>
+                            </c:if>
+                            <c:if test="${user.role.roleID ne 'Regular user'}">
+                                <option value="Regular user">Regular User</option>
+                            </c:if>
+                            <c:if test="${user.role.roleID ne 'Company admin'}">
+                                <option value="Company admin">Company Admin</option>
+                            </c:if>
+                        </select>
 
-                    <input type="hidden" name="action" value="edit">
-                    <input class="addInput" type="submit" value="Save">
-                    <input class="Cancel" type="button" value="Cancel">
-                </form>     
-            </div>
+                        <input type="hidden" name="action" value="edit">
+                        <input class="addInput" type="submit" value="Save">
+                        <input type="hidden" name="action" value="cancel">
+                        <input class="Cancel" type="submit" value="Cancel">
+                    </form>  
             </c:if>
+            </div>
 
         </div>
     </body>
