@@ -1,14 +1,88 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dataaccess;
 
-/**
- *
- * @author 841898
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import models.Role;
+
 public class RoleDB {
     
+    public List<Role> getAll(int roleID) throws Exception {
+        List<Role> roles = new ArrayList<>();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        String sql = "SELECT * FROM role WHERE role_id=?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, roleID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String roleName = rs.getString(2);
+                Role role = new Role(roleID, roleName);
+                roles.add(role);
+            }
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+
+        return roles;
+    }
+    
+    public void insert(Role role) throws Exception {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        String sql = "INSERT INTO role (role_id, role_name) VALUES (?, ?)";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, role.getRoleID());
+            ps.setString(2, role.getRoleName());
+            ps.executeUpdate();
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+    }
+
+    public void update(Role role) throws Exception {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        String sql = "UPDATE role SET role_name=? WHERE role_id=?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, role.getRoleName());
+            ps.executeUpdate();
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+    }
+
+    public void delete(Role role) throws Exception {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection con = cp.getConnection();
+        PreparedStatement ps = null;
+        String sql = "DELETE FROM role WHERE role_id=?";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, role.getRoleID());
+            ps.executeUpdate();
+        } finally {
+            DBUtil.closePreparedStatement(ps);
+            cp.freeConnection(con);
+        }
+    }
 }

@@ -9,22 +9,24 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     private String email;
+    private boolean active;
     private String firstName;
     private String lastName;
     private String password;
-    private boolean active;
     private int roleID;
+    
     
     public User() {
         
     }
     
-    public User(String email, String firstName, String lastName, String password, boolean active, int roleID){
+    public User(String email, boolean active, String firstName, String lastName, String password, int roleID){
         this.email = email;
+        this.active = active;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.active = active;
+        
         this.roleID = roleID;
     }
     
