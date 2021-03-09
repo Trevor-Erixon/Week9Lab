@@ -5,10 +5,19 @@
  */
 package services;
 
+import dataaccess.RoleDB;
+import java.util.List;
+import models.Role;
+
 /**
  *
  * @author 815822
  */
 public class RoleService {
     
+        public List<Role> getAll(String role) throws Exception {
+        RoleDB roleDB = new RoleDB();
+        List<Role> notes = roleDB.getAll(role);
+        return notes;
+    }
 }
