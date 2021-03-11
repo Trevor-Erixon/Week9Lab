@@ -31,7 +31,7 @@
                         </select>
 
                         <input type="hidden" name="action" value="add">
-                        <input class="addInput" type="submit" value="Save">
+                        <input class="addInput" type="submit" value="Add">
                     </form>
                 </c:if>
             </div>
@@ -107,7 +107,7 @@
                         </select>
 
                         <input type="hidden" name="action" value="edit">
-                        <input class="addInput" type="submit" value="Save">
+                        <input class="addInput" type="submit" value="Edit">
                         <input type="hidden" name="action" value="cancel">
                         <input class="Cancel" type="submit" value="Cancel">
                     </form>  
