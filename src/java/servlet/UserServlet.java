@@ -80,9 +80,19 @@ public class UserServlet extends HttpServlet {
             switch (action) {
 
                 case "edit":
-
-                    selectedUser = us.get(email);
-
+                    
+                    selectedUser = us.get(request.getParameter("editEmail"));
+                    String editEmail = selectedUser.getEmail();
+                    String editFname = selectedUser.getFirstName();
+                    String editLname = selectedUser.getLastName();
+                    int editRole = selectedUser.getRoleID();
+                    String editPass = selectedUser.getPassword();
+                    
+                    request.setAttribute("editEmail", editEmail);
+                    request.setAttribute("editFirstname", editFname);
+                    request.setAttribute("editLastname", editLname);
+                    request.setAttribute("editPassword", editPass);
+                    request.setAttribute("editRole", editRole);
                     break;
 
                 case "add":
