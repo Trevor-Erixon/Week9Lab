@@ -4,7 +4,10 @@
     Author     : 815822
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -54,16 +57,16 @@
                             <td>
                                 <input class="userInfo chActive" type="checkbox" name="isActive" checked>                          
                             </td>
-                            <td>${user.firstname}</td>
-                            <td>${user.lastname}</td>
-                            <td>${user.role.roleID}</td>
-<!--                            <c:if test="${user.role.roleID eq 'System admin'}">
+                            <td>${user.firstName}</td>
+                            <td>${user.lastName}</td>
+                            <td>${user.roleID}</td>
+<!--                            <c:if test="${user.roleID eq 1}">
                                 <td>System Admin</td>
                             </c:if>
-                                <c:if test="${user.role.roleID eq 'Regular user'}">
+                                <c:if test="${user.roleID eq 2}">
                                 <td>Regular User</td>
                             </c:if>
-                                <c:if test="${user.role.roleID eq 'Company admin'}">
+                                <c:if test="${user.roleID eq 3}">
                                 <td>Company Admin</td>
                             </c:if>-->
                             
@@ -81,7 +84,7 @@
                                     <!--<i class="fa fa-close delBtn" style="color:red"></i>-->
                                 </form>
                             </td>
-                        </c:foreach>
+                        </c:forEach>
                     </tr>
                 </table>
             </div>
@@ -95,13 +98,13 @@
                         <input class="userInfo" type="text" placeholder="Edit Last Name" name="lastname" value="${user.lastname}">     
                         <input class="userInfo" type="password" placeholder="Password" name="password" value="${user.password}">
                         <select class="userInfo" name="role" value="${editRole}">
-                            <c:if test="${user.role.roleID eq 'System admin'}">
+                            <c:if test="${user.roleID eq 1}">
                                 <option value="System admin">System Admin</option>
                             </c:if>
-                            <c:if test="${user.role.roleID ne 'Regular user'}">
+                            <c:if test="${user.roleID ne 2}">
                                 <option value="Regular user">Regular User</option>
                             </c:if>
-                            <c:if test="${user.role.roleID ne 'Company admin'}">
+                            <c:if test="${user.roleID ne 3}">
                                 <option value="Company admin">Company Admin</option>
                             </c:if>
                         </select>
