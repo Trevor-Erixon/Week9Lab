@@ -31,15 +31,23 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        
-       UserService userservice = new UserService();
-       List<User> users = userservice.getAll(user);
+        try{
+             
+        User user = null;
+        Role role = null;
+        UserService userservice = new UserService();
+        List<User> users = userservice.getAll(user);
         RoleService roleservice = new RoleService();
         List<Role> roles = roleservice.getAll(role);
      
         request.setAttribute("users", users);
         request.setAttribute("roles", roles);
-         getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+        
+        } catch (Exception ex) {
+         Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+     }
+       
 
     }
 
@@ -52,7 +60,7 @@ public class UserServlet extends HttpServlet {
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String password = request.getParameter("password");
-        String role = request.getParameter("role");
+        int role = Integer.parseInt( request.getParameter("role"));
 
         boolean active = true;
 
@@ -73,56 +81,43 @@ public class UserServlet extends HttpServlet {
 
                 case "edit":
 
-                    selectedUser = us.getUser(email);
+                    selectedUser = us.get(email);
 
                     break;
 
                 case "add":
-
-                    if (us.addUser(email, firstName, lastName, password, role, active)) {
-
-                        message = "User added";
-
-                    } else {
-
-                        message = "Could not add new user";
-
-                    }
-
+     
+                         us.insert(email, firstName, lastName, password, active, role);
+                         
+         
                     break;
 
                 case "save":
-
-                    if (us.updateUser(email, firstName, lastName, password, role, active)) {
-
-                        message = "User updated";
-
-                    } else {
-
-                        message = "Could not update user";
-
-                    }
+                
+                        us.update(email, firstName, lastName, password, active, role);
+        
+         
                     break;
                 case "delete":
-                    if (us.deleteUser(email)) {
-                        message = "User deleted";
-                    } else {
-                        message = "Could not delete user";
-                    }
+           
+                        us.delete(email); 
+
+
                     break;
                 default:
                     break;
 
             }
+              request.setAttribute("message", action);
         } catch (Exception e) {
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, e);
             request.setAttribute("message", "error");
         }
 
         request.setAttribute("selectedUser", selectedUser);
-        request.setAttribute("message", message);
-
-        displayMainPage(request, response);
+        
+        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);  
+        
     }
 
 }
