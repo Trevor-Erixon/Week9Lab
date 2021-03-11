@@ -68,17 +68,17 @@
                             </c:if>-->
                             
                             <td>
-                                <form action="users" method="get" >
-                                    <input type="submit" name="edit" >
+                                <form action="users" method="post" >
+                                    <input type="submit" name="edit" value="Edit">
                                     <input type="hidden" name="action" value="edit">
-                                    <i class="fa fa-pencil editBtn"></i>
+                                    <!--<i class="fa fa-pencil editBtn"></i>-->
                                 </form>
                             </td>
                             <td>
-                                <form action="users" method="get" >
-                                    <input type="submit" name="delete">
+                                <form action="users" method="post" >
+                                    <input type="submit" name="delete" value="Delete">
                                     <input type="hidden" name="action" value="delete">
-                                    <i class="fa fa-close delBtn" style="color:red"></i>
+                                    <!--<i class="fa fa-close delBtn" style="color:red"></i>-->
                                 </form>
                             </td>
                         </c:foreach>
