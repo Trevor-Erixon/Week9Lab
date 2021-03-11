@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author 807930
  */
 public class Role implements Serializable {
+    //private int roleID;
     private int roleID;
     private String roleName;
     
