@@ -83,7 +83,7 @@
                                 <form action="users" method="post" >
                                     <input type="submit" name="delete" value="Delete">
                                     <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="editEmail" value="${user.email}">
+                                    <input type="hidden" name="email" value="${user.email}">
                                     <!--<i class="fa fa-close delBtn" style="color:red"></i>-->
                                 </form>
                             </td>
@@ -97,23 +97,23 @@
                 
                 <h1 class="editUser">Edit User</h1>
                     <form action="users" method="post">
-                        <input class="userInfo" type="email" placeholder="Edit Email" name="editEmail" value="${user.email}" readonly>
-                        <input class="userInfo" type="text" placeholder="Edit First Name" name="editFirstname" value="${user.firstname}"> 
-                        <input class="userInfo" type="text" placeholder="Edit Last Name" name="editLastname" value="${user.lastname}">     
-                        <input class="userInfo" type="password" placeholder="Password" name="editPassword" value="${user.password}">
+                        <input class="userInfo" type="email" placeholder="Edit Email" name="editEmail" value="${editEmail}" readonly>
+                        <input class="userInfo" type="text" placeholder="Edit First Name" name="editFirstname" value="${editFirstname}"> 
+                        <input class="userInfo" type="text" placeholder="Edit Last Name" name="editLastname" value="${editLastname}">     
+                        <input class="userInfo" type="password" placeholder="Password" name="editPassword" value="${editPassword}">
                         <select class="userInfo" name="editRole" value="${editRole}">
-                            <c:if test="${user.roleID eq 1}">
-                                <option value="System admin">System Admin</option>
+                            <c:if test="${editRole eq 1}">
+                                <option value=1>System Admin</option>
                             </c:if>
-                            <c:if test="${user.roleID ne 2}">
-                                <option value="Regular user">Regular User</option>
+                            <c:if test="${editRole ne 2}">
+                                <option value=2>Regular User</option>
                             </c:if>
-                            <c:if test="${user.roleID ne 3}">
-                                <option value="Company admin">Company Admin</option>
+                            <c:if test="${editRole ne 3}">
+                                <option value=3>Company Admin</option>
                             </c:if>
                         </select>
 
-                        <input type="hidden" name="action" value="edit">
+                        <input type="hidden" name="action" value="save">
                         <input class="addInput" type="submit" value="Edit">
                         <input type="hidden" name="action" value="cancel">
                         <input class="Cancel" type="submit" value="Cancel">

@@ -45,6 +45,10 @@ public class UserService {
         UserDB userDB = new UserDB();        
         userDB.delete(user);
     }
+
+    public boolean insert(String email, String firstName, String lastName, String password, boolean active, String role) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 }
