@@ -24,30 +24,29 @@ import services.UserService;
  * @author 827637
  */
 public class UserServlet extends HttpServlet {
- @Override
+
+    @Override
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        try{
-             
-        User user = null;
-        Role role = null;
-        UserService userservice = new UserService();
-        List<User> users = userservice.getAll(user);
-        RoleService roleservice = new RoleService();
-        List<Role> roles = roleservice.getAll(role);
-     
-        request.setAttribute("users", users);
-        request.setAttribute("roles", roles);
-        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
-        
+        try {
+
+            User user = null;
+            Role role = null;
+            UserService userservice = new UserService();
+            List<User> users = userservice.getAll(user);
+            RoleService roleservice = new RoleService();
+            List<Role> roles = roleservice.getAll(role);
+
+            request.setAttribute("users", users);
+            request.setAttribute("roles", roles);
+            getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+
         } catch (Exception ex) {
-         Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
-     }
-       
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -56,21 +55,18 @@ public class UserServlet extends HttpServlet {
             throws ServletException, IOException {
         UserService us = new UserService();
 
-        
-         String editEmail = request.getParameter("editEmail");
-                    String editFname =request.getParameter("editFirstname");
-                    String editLname = request.getParameter("editLastname");
-                    String editRole = request.getParameter("editRole");
-                    String editPass = request.getParameter("editPassword");
-        
+        String editEmail = request.getParameter("editEmail");
+        String editFname = request.getParameter("editFirstname");
+        String editLname = request.getParameter("editLastname");
+        String editRole = request.getParameter("editRole");
+        String editPass = request.getParameter("editPassword");
+
         String email = request.getParameter("email");
-//         String editEmail = request.getParameter("editEmail");
-        System.out.println(email);
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String password = request.getParameter("password");
-        String role =  request.getParameter("role");
-        System.out.println("editRole : " + editRole);
+        String role = request.getParameter("role");
+
 
         boolean active = true;
 
@@ -88,18 +84,14 @@ public class UserServlet extends HttpServlet {
         try {
 
             switch (action) {
-
                 case "edit":
-                    
                     selectedUser = us.get(request.getParameter("editEmail"));
-                     editEmail = selectedUser.getEmail();
-                     editFname = selectedUser.getFirstName();
-                     editLname = selectedUser.getLastName();
-                     editRole = String.valueOf(selectedUser.getRoleID());
-                     editPass = selectedUser.getPassword();
-                     
-                     System.out.println("editRole: " + editRole);
-                    
+                    editEmail = selectedUser.getEmail();
+                    editFname = selectedUser.getFirstName();
+                    editLname = selectedUser.getLastName();
+                    editRole = String.valueOf(selectedUser.getRoleID());
+                    editPass = selectedUser.getPassword();
+
                     request.setAttribute("editEmail", editEmail);
                     request.setAttribute("editFirstname", editFname);
                     request.setAttribute("editLastname", editLname);
@@ -107,71 +99,50 @@ public class UserServlet extends HttpServlet {
                     request.setAttribute("editRole", editRole);
                     break;
 
-
-                    
                 case "add":
-     
-                         us.insert(email, firstName, lastName, password, active, Integer.parseInt(role));
-                         
-         
+                    us.insert(email, firstName, lastName, password, active, Integer.parseInt(role));
                     break;
 
                 case "save":
-                    System.out.println("save action");
-                    System.out.println(editEmail +", "+ editFname+", "+ editLname+", "+ editPass+", "+ active+", "+ editRole);
-//                        us.update(editEmail , editFname , editLname , editPass , active, Integer.parseInt(editRole ));
-        us.update(editEmail , editFname , editLname , editPass , active, Integer.parseInt(editRole));
-//                us.update("asd@sad.com" , "jay" , "lee" , "asdxzc" , active, 1);
-         
+                    us.update(editEmail, editFname, editLname, editPass, active, Integer.parseInt(editRole));
                     break;
+                    
                 case "delete":
-           
-                        us.delete(email); 
-
-
+                    us.delete(email);
                     break;
+                    
                 default:
                     break;
-
             }
-              request.setAttribute("message", action);
-//              User user = null;
-//        Role roleAll = null;
-//        UserService userservice = new UserService();
-//        List<User> users = userservice.getAll(user);
-//        RoleService roleservice = new RoleService();
-//        List<Role> roles = roleservice.getAll(roleAll);
-//        request.setAttribute("users", users);
-//        request.setAttribute("roles", roles);
+            request.setAttribute("message", action);
+
         } catch (Exception e) {
             e.printStackTrace();
             Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, e);
             request.setAttribute("message", "error");
-            
+
         }
-        
-        
-          try{
-             
-        User user = null;
-        Role roleAll = null;
-        UserService userservice = new UserService();
-        List<User> users = userservice.getAll(user);
-        RoleService roleservice = new RoleService();
-        List<Role> roles = roleservice.getAll(roleAll);
-     
-        request.setAttribute("users", users);
-        request.setAttribute("roles", roles);
-//        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
-        
+
+        try {
+
+            User user = null;
+            Role roleAll = null;
+            UserService userservice = new UserService();
+            List<User> users = userservice.getAll(user);
+            RoleService roleservice = new RoleService();
+            List<Role> roles = roleservice.getAll(roleAll);
+
+            request.setAttribute("users", users);
+            request.setAttribute("roles", roles);
+
         } catch (Exception ex) {
-         Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
-     }
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         request.setAttribute("selectedUser", selectedUser);
-        
-        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);  
-        
+
+        getServletContext().getRequestDispatcher("/WEB-INF/users.jsp").forward(request, response);
+
     }
 
 }

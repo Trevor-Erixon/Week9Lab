@@ -61,22 +61,14 @@
                             <td>${user.firstName}</td>
                             <td>${user.lastName}</td>
                             <td>${user.roleID}</td>
-<!--                            <c:if test="${user.roleID eq 1}">
-                                <td>System Admin</td>
-                            </c:if>
-                                <c:if test="${user.roleID eq 2}">
-                                <td>Regular User</td>
-                            </c:if>
-                                <c:if test="${user.roleID eq 3}">
-                                <td>Company Admin</td>
-                            </c:if>-->
+
                             
                             <td>
                                 <form action="users" method="post" >
                                     <input type="submit" name="edit" value="Edit">
                                     <input type="hidden" name="action" value="edit">
                                     <input type="hidden" name="editEmail" value="${user.email}">
-                                    <!--<i class="fa fa-pencil editBtn"></i>-->
+                                   
                                 </form>
                             </td>
                             <td>
@@ -84,7 +76,7 @@
                                     <input type="submit" name="delete" value="Delete">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="email" value="${user.email}">
-                                    <!--<i class="fa fa-close delBtn" style="color:red"></i>-->
+                              
                                 </form>
                             </td>
                             </tr>
@@ -97,7 +89,7 @@
                 
                 <h1 class="editUser">Edit User</h1>
                     <form action="users" method="post">
-                        <input class="userInfo" type="email" placeholder="Edit Email" disabled="true" name="editEmail" value="${editEmail}" readonly>
+                        <input class="userInfo" type="email" placeholder="Edit Email" name="editEmail" value="${editEmail}" readonly>
                         <input class="userInfo" type="text" placeholder="Edit First Name" name="editFirstname" value="${editFirstname}"> 
                         <input class="userInfo" type="text" placeholder="Edit Last Name" name="editLastname" value="${editLastname}">     
                         <input class="userInfo" type="password" placeholder="Password" name="editPassword" value="${editPassword}">
