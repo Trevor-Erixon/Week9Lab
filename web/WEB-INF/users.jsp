@@ -97,19 +97,25 @@
                 
                 <h1 class="editUser">Edit User</h1>
                     <form action="users" method="post">
-                        <input class="userInfo" type="email" placeholder="Edit Email" name="editEmail" value="${editEmail}" readonly>
+                        <input class="userInfo" type="email" placeholder="Edit Email" disabled="true" name="editEmail" value="${editEmail}" readonly>
                         <input class="userInfo" type="text" placeholder="Edit First Name" name="editFirstname" value="${editFirstname}"> 
                         <input class="userInfo" type="text" placeholder="Edit Last Name" name="editLastname" value="${editLastname}">     
                         <input class="userInfo" type="password" placeholder="Password" name="editPassword" value="${editPassword}">
                         <select class="userInfo" name="editRole" value="${editRole}">
                             <c:if test="${editRole eq 1}">
-                                <option value=1>System Admin</option>
+                                <option value=1 selected>System Admin</option>
+                                 <option value=2 >Regular User</option>
+                                 <option value=3 >Company Admin</option>
                             </c:if>
-                            <c:if test="${editRole ne 2}">
-                                <option value=2>Regular User</option>
+                            <c:if test="${editRole eq 2}">
+                                <option value=1 >System Admin</option>
+                                 <option value=2 selected>Regular User</option>
+                                 <option value=3 >Company Admin</option>
                             </c:if>
-                            <c:if test="${editRole ne 3}">
-                                <option value=3>Company Admin</option>
+                            <c:if test="${editRole eq 3}">               
+                                <option value=1 >System Admin</option>
+                                 <option value=2 >Regular User</option>
+                                 <option value=3 selected >Company Admin</option>
                             </c:if>
                         </select>
 

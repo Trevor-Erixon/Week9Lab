@@ -40,3 +40,4 @@ INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
 INSERT INTO `user` (`email`,`active`,`first_name`,`last_name`,`password`,`role`)
 	VALUES ('cprg352+barb@gmail.com', true, 'Barb','Barber', 'password', 2);
 
+-- UPDATE `user` SET first_name='kevin', last_name='kim', password='asdfsd', active=true, role=3 WHERE email='cprg352+anne@gmail.com';

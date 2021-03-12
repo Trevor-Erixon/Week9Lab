@@ -120,7 +120,7 @@ public class UserServlet extends HttpServlet {
                     System.out.println("save action");
                     System.out.println(editEmail +", "+ editFname+", "+ editLname+", "+ editPass+", "+ active+", "+ editRole);
 //                        us.update(editEmail , editFname , editLname , editPass , active, Integer.parseInt(editRole ));
-        us.update(editEmail , editFname , editLname , editPass , active, 1);
+        us.update(editEmail , editFname , editLname , editPass , active, Integer.parseInt(editRole));
 //                us.update("asd@sad.com" , "jay" , "lee" , "asdxzc" , active, 1);
          
                     break;
