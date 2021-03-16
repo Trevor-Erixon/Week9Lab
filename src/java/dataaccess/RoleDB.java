@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import models.Role;
 import models.User;
 
@@ -43,21 +44,25 @@ public class RoleDB {
         }
 
     }
-    
+    /*
     public void insert(Role role) throws Exception {
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection con = cp.getConnection();
-        PreparedStatement ps = null;
-        String sql = "INSERT INTO role (role_id, role_name) VALUES (?, ?)";
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
         
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, role.getRoleID());
-            ps.setString(2, role.getRoleName());
-            ps.executeUpdate();
-        } finally {
-            DBUtil.closePreparedStatement(ps);
-            cp.freeConnection(con);
+        try 
+        {            
+            trans.begin();
+            em.persist(role);
+            em.merge(user);
+            trans.commit();
+        } 
+        catch (Exception e)
+        {
+            trans.rollback();
+        }
+        finally 
+        {
+            em.close();
         }
     }
 
@@ -91,5 +96,5 @@ public class RoleDB {
             DBUtil.closePreparedStatement(ps);
             cp.freeConnection(con);
         }
-    }
+    }*/
 }

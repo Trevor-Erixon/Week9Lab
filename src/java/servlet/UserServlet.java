@@ -89,7 +89,7 @@ public class UserServlet extends HttpServlet {
                     editEmail = selectedUser.getEmail();
                     editFname = selectedUser.getFirstName();
                     editLname = selectedUser.getLastName();
-                    editRole = String.valueOf(selectedUser.getRoleID());
+                    editRole = String.valueOf(selectedUser.getRole());
                     editPass = selectedUser.getPassword();
 
                     request.setAttribute("editEmail", editEmail);
@@ -100,11 +100,11 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 case "add":
-                    us.insert(email, firstName, lastName, password, active, Integer.parseInt(role));
+                    us.insert(email, firstName, lastName, password, active);
                     break;
 
                 case "save":
-                    us.update(editEmail, editFname, editLname, editPass, active, Integer.parseInt(editRole));
+                    us.update(editEmail, editFname, editLname, editPass, active);
                     break;
                     
                 case "delete":
