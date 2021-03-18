@@ -65,7 +65,7 @@ public class UserServlet extends HttpServlet {
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String password = request.getParameter("password");
-        String role = request.getParameter("role");
+        int role = Integer.parseInt(request.getParameter("role"));
 
 
         boolean active = true;
@@ -90,6 +90,7 @@ public class UserServlet extends HttpServlet {
                     editFname = selectedUser.getFirstName();
                     editLname = selectedUser.getLastName();
                     editRole = String.valueOf(selectedUser.getRole());
+                    //editRole = selectedUser.getRole();
                     editPass = selectedUser.getPassword();
 
                     request.setAttribute("editEmail", editEmail);
@@ -100,7 +101,7 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 case "add":
-                    us.insert(email, firstName, lastName, password, active);
+                    us.insert(email, firstName, lastName, password, active, role);
                     break;
 
                 case "save":

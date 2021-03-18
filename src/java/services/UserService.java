@@ -29,12 +29,13 @@ public class UserService {
         return users;
     }
     
-    public void insert(String email, String firstName, String lastName, String password, boolean active) throws Exception {
+    public void insert(String email, String firstName, String lastName, String password, boolean active, int roleID) throws Exception {
+        RoleDB roleDB = new RoleDB();
+        Role role = roleDB.get(roleID);
+        
         User user = new User(email, active, firstName, lastName, password);
-        Role role = user.getRole();
-        
         user.setRole(role);
-        
+ 
         UserDB userDB = new UserDB();
         userDB.insert(user);
     }

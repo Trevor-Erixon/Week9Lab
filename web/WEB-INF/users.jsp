@@ -55,30 +55,30 @@
                         <c:forEach items="${users}" var="user">
                             <tr>
                                 <td> ${user.email}</td>
-                            <td>
-                                <input class="userInfo chActive" type="checkbox" name="isActive" checked>                          
-                            </td>
-                            <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
-                            <td>${user.roleID}</td>
+                                <td>
+                                    <input class="userInfo chActive" type="checkbox" name="isActive" checked>                          
+                                </td>
+                                <td>${user.firstName}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.role.roleName}</td>
 
-                            
-                            <td>
-                                <form action="users" method="post" >
-                                    <input type="submit" name="edit" value="Edit">
-                                    <input type="hidden" name="action" value="edit">
-                                    <input type="hidden" name="editEmail" value="${user.email}">
-                                   
-                                </form>
-                            </td>
-                            <td>
-                                <form action="users" method="post" >
-                                    <input type="submit" name="delete" value="Delete">
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="email" value="${user.email}">
-                              
-                                </form>
-                            </td>
+
+                                <td>
+                                    <form action="users" method="post" >
+                                        <input type="submit" name="edit" value="Edit">
+                                        <input type="hidden" name="action" value="edit">
+                                        <input type="hidden" name="editEmail" value="${user.email}">
+
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="users" method="post" >
+                                        <input type="submit" name="delete" value="Delete">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="email" value="${user.email}">
+
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                     
@@ -112,7 +112,7 @@
                         </select>
 
                         <input type="hidden" name="action" value="save">
-                        <input class="addInput" type="submit" value="Edit">
+                        <input class="addInput" type="submit" value="Save">
                         <input type="hidden" name="action" value="cancel">
                         <input class="Cancel" type="submit" value="Cancel">
                     </form>  
