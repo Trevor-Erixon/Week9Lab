@@ -106,13 +106,13 @@ public class UserServlet extends HttpServlet {
                     editRoleID = selectedUser.getRole().getRoleId();
                     editPass = selectedUser.getPassword();
                     
-                    System.out.println(editEmail + " " + editFname + " " + editLname + " " + editRole + " " + editRoleID + " " + editPass);
+                    //System.out.println(editEmail + " " + editFname + " " + editLname + " " + editRole + " " + editRoleID + " " + editPass);
                     
                     request.setAttribute("editEmail", editEmail);
                     request.setAttribute("editFirstname", editFname);
                     request.setAttribute("editLastname", editLname);
                     request.setAttribute("editPassword", editPass);
-                    request.setAttribute("editRole", editRole);
+                    request.setAttribute("editRoleID", editRoleID);
                     /*
                     request.setAttribute("editEmail", selectedUser.getEmail());
                     request.setAttribute("editFirstname", selectedUser.getFirstName());
@@ -133,7 +133,13 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 case "save":
-                    //us.update(editEmail, editFname, editLname, editPass, active);
+                    editEmail = request.getParameter("editEmail");
+                    editFname = request.getParameter("editFirstname");
+                    editLname = request.getParameter("editLastname");                    
+                    editPass = request.getParameter("editPassword");
+                    editRoleID = Integer.parseInt(request.getParameter("editRole"));
+
+                    us.update(editEmail, editFname, editLname, editPass, active, editRoleID);
                     break;
                     
                 case "delete":

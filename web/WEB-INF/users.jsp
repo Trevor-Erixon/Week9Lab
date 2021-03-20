@@ -95,19 +95,19 @@
                         <input class="userInfo" type="password" placeholder="Password" name="editPassword" value="${editPassword}">
                         <select class="userInfo" name="editRole" value="${editRoleID}">
                             <c:if test="${editRoleID eq 1}">
-                                <option value=1 selected>System Admin</option>
-                                 <option value=2 >Regular User</option>
-                                 <option value=3 >Company Admin</option>
+                                <option value="1" selected>System Admin</option>
+                                 <option value="2" >Regular User</option>
+                                 <option value="3" >Company Admin</option>
                             </c:if>
                             <c:if test="${editRoleID eq 2}">
-                                <option value=1 >System Admin</option>
-                                 <option value=2 selected>Regular User</option>
-                                 <option value=3 >Company Admin</option>
+                                <option value="1" >System Admin</option>
+                                 <option value="2" selected>Regular User</option>
+                                 <option value="3" >Company Admin</option>
                             </c:if>
                             <c:if test="${editRoleID eq 3}">               
-                                <option value=1 >System Admin</option>
-                                 <option value=2 >Regular User</option>
-                                 <option value=3 selected >Company Admin</option>
+                                <option value="1" >System Admin</option>
+                                 <option value="2" >Regular User</option>
+                                 <option value="3" selected >Company Admin</option>
                             </c:if>
                         </select>
 

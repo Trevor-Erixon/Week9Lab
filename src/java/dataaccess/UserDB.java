@@ -81,6 +81,9 @@ public class UserDB {
         
         try 
         {
+            Role role = user.getRole();
+            role.getUserList().add(user);
+            System.out.println(user);
             trans.begin();
             em.merge(user);
             trans.commit();

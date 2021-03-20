@@ -40,7 +40,10 @@ public class UserService {
         userDB.insert(user);
     }
     
-    public void update(String email, String firstName, String lastName, String password, boolean active) throws Exception {
+    public void update(String email, String firstName, String lastName, String password, boolean active, int roleID) throws Exception {
+        RoleDB roleDB = new RoleDB();
+        Role role = roleDB.get(roleID);
+        
         UserDB userDB = new UserDB();        
         User user = userDB.get(email);
         
@@ -48,6 +51,7 @@ public class UserService {
         user.setLastName(lastName);
         user.setPassword(password);
         user.setActive(active);
+        user.setRole(role);
                 
         userDB.update(user); 
     }
