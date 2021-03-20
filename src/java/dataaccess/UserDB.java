@@ -60,6 +60,7 @@ public class UserDB {
         {
             Role role = user.getRole();
             role.getUserList().add(user);
+            
             trans.begin();
             em.persist(user);
             em.merge(role);
@@ -83,7 +84,7 @@ public class UserDB {
         {
             Role role = user.getRole();
             role.getUserList().add(user);
-            System.out.println(user);
+
             trans.begin();
             em.merge(user);
             trans.commit();
@@ -106,6 +107,7 @@ public class UserDB {
         {
             Role role = user.getRole();
             role.getUserList().remove(user);
+            
             trans.begin();
             em.remove(em.merge(user));
             em.merge(role);

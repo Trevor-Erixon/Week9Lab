@@ -54,19 +54,7 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserService us = new UserService();
-/*
-        String editEmail = request.getParameter("editEmail");
-        String editFname = request.getParameter("editFirstname");
-        String editLname = request.getParameter("editLastname");
-        String editRole = request.getParameter("editRole");
-        String editPass = request.getParameter("editPassword");
-        
-        String email = request.getParameter("email");
-        String firstName = request.getParameter("firstname");
-        String lastName = request.getParameter("lastname");
-        String password = request.getParameter("password");
-        int role = Integer.parseInt(request.getParameter("role"));
-*/
+
         String editEmail;
         String editFname;
         String editLname;
@@ -113,13 +101,7 @@ public class UserServlet extends HttpServlet {
                     request.setAttribute("editLastname", editLname);
                     request.setAttribute("editPassword", editPass);
                     request.setAttribute("editRoleID", editRoleID);
-                    /*
-                    request.setAttribute("editEmail", selectedUser.getEmail());
-                    request.setAttribute("editFirstname", selectedUser.getFirstName());
-                    request.setAttribute("editLastname", selectedUser.getLastName());
-                    request.setAttribute("editPassword", selectedUser.getPassword());
-                    request.setAttribute("editRole", String.valueOf(selectedUser.getRole()));
-                    */
+
                     break;
 
                 case "add":
@@ -143,7 +125,8 @@ public class UserServlet extends HttpServlet {
                     break;
                     
                 case "delete":
-                    //us.delete(email);
+                    email = (String) request.getParameter("deleteEmail");
+                    us.delete(email);
                     break;
                     
                 default:
